@@ -1,0 +1,98 @@
+.text:00401500       push  ebp		(push ebp onto stack and decrement)
+.text:00401501       mov   ebp, esp	(move value in esp to ebp register)
+.text:00401503       and   esp, 0FFFFFFF0h	(And test with hex number, restricting esp to 16 bits)
+.text:00401506       sub   esp, 20h	(subtracts 20h from esp)
+.text:00401509  call  ___main		(calls main method)
+.text:0040150E       mov   dword ptr [esp+1Ch], 64h	(moves value 64h to pointer at [esp+1ch]
+.text:00401516       jmp   loc_4015D6	(moves to specified location in memory)
+.text:0040151B ; ---------------------------------------------------------------------------
+.text:0040151B
+.text:0040151B loc_40151B:           ; CODE XREF: _main+DE↓j
+.text:0040151B       mov   ecx, [esp+1Ch]	(move value in [esp+1ch](64h) to ecx register) 
+.text:0040151F       mov   edx, 51EB851Fh	(move value 51EB851Fh to edx register)
+.text:00401524       mov   eax, ecx	(move value in ecx to eax register)
+.text:00401526      imul  edx		(signed multiplication of edx with itself)
+.text:00401528       sar   edx, 5	(shifts edx register right by 5)
+.text:0040152B       mov   eax, ecx	(moves value in ecx to eax register)
+.text:0040152D       sar   eax, 1Fh	(shifts eax right by 1Fh)
+.text:00401530       sub   edx, eax	(subtracts eax value from edx)
+.text:00401532       mov   eax, edx	(move value in edx to eax)
+.text:00401534       mov   [esp+18h], eax	(moves value in eax to [esp+18h])
+.text:00401538       mov   eax, [esp+18h]	(moves value in [esp+18h] to eax register)
+.text:0040153C       imul  edx, eax, -64h	(stores result of eax*-64h in edx)
+.text:0040153F       mov   eax, [esp+1Ch]	(moves value in [esp+1ch] to eax)
+.text:00401543       lea   ecx,[edx+eax]	(loads address at [edx+eax] into ecx register)
+.text:00401546       mov   edx, 66666667h	(moves value 66666667h into edx register)
+.text:0040154B       mov   eax, ecx	(Moves value in ecx to eax register)
+.text:0040154D       imul  edx		(Signed multiplication of edx eith itself)
+.text:0040154F       sar   edx, 2	(shifts edx right by 2)
+.text:00401552       mov   eax, ecx	(moves value in ecx to eax register)
+.text:00401554       sar   eax, 1Fh	(shifts eax right by 1Fh)
+.text:00401557       sub   edx, eax	(subtracts value in eax from edx register)
+.text:00401559       mov   eax, edx	(move value in edx to eax)
+.text:0040155B       mov   [esp+14h], eax	(move value in eax to [esp+14h])
+.text:0040155F       mov   ecx, [esp+1Ch]	(move value in [esp+1ch] to ecx)
+.text:00401563       mov   edx, 66666667h	(move value 6666667h to edx register)
+.text:00401568       mov   eax, ecx	(move value in ecx to eax)
+.text:0040156A       imul  edx		(Signed multiply edx with itself
+.text:0040156C       sar   edx, 2	(Shift edx right by 2)
+.text:0040156F       mov   eax, ecx	(Move value in eax to ecx)
+.text:00401571     sar   eax, 1Fh
+.text:00401574       sub   edx, eax
+.text:00401576       mov   eax, edx
+.text:00401578       shl   eax, 2
+.text:0040157B       add   eax, edx
+.text:0040157D       add   eax, eax
+.text:0040157F       sub   ecx, eax
+.text:00401581       mov   eax, ecx
+.text:00401583       mov   [esp+10h], eax
+.text:00401587       mov   eax, [esp+18h]
+.text:0040158B       imul  eax, [esp+18h]
+.text:00401590       imul  eax, [esp+18h]
+.text:00401595       mov   edx, eax
+.text:00401597       mov   eax, [esp+14h]
+.text:0040159B       imul  eax, [esp+14h]
+.text:004015A0       imul  eax, [esp+14h]
+.text:004015A5       add   edx, eax
+.text:004015A7       mov   eax, [esp+10h]
+.text:004015AB       imul  eax, [esp+10h]
+.text:004015B0       imul  eax, [esp+10h]
+.text:004015B5       add   eax, edx
+.text:004015B7       cmp   eax, [esp+1Ch]	(compare eax with value at [esp+1ch])
+.text:004015BB       jnz   short loc_4015D1	(If not zero, jump to specified location)
+.text:004015BD       mov   eax, [esp+1Ch]	(otherwise move value in [esp+1ch] to eax register)
+.text:004015C1       mov   [esp+4], eax
+.text:004015C5       mov   dword ptr [esp], offset aD ; "%d  "	(Print)
+.text:004015CC       call  _printf	(call print function)
+.text:004015D1
+.text:004015D1 loc_4015D1:           ; CODE XREF: _main+BB↑j
+.text:004015D1       add   dword ptr [esp+1Ch], 1
+.text:004015D6
+.text:004015D6 loc_4015D6:           ; CODE XREF: _main+16↑j
+.text:004015D6       cmp   dword ptr [esp+1Ch], 3E7h	(Compare pointer at [esp+1ch] to 3E7h)
+.text:004015DE       jle   loc_40151B		(if less than jump to specified location in memory)
+.text:004015E4     mov   eax, 0		(otherwise set eax to 0)
+.text:004015E9       leave
+.text:004015EA       retn
+.text:004015EA _main     endp
+
+
+C code:
+nt main(int argc, const char **argv, const char **envp) {
+    
+	int a = 100;
+    
+	while(a <= 999){
+        int x = a / 100;
+	int y = (((x*-100)+a)/10);
+	int z = (a%10);
+        if(z*z*z + y*y*y + x*x*x <= a){
+            printf("x = %d ",x);
+            printf("y = %d ", y);
+            printf("z = %d \n", z);
+            
+        }     
+        a+=1;
+    }
+    return 0;
+}
