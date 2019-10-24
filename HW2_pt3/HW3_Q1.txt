@@ -1,0 +1,49 @@
+
+
+
+Question 1
+
+argc = dword ptr 8	(dword declared with offset of 8)
+
+argv = dword ptr 0ch	(dword declared with offset of 0c hexadecimal (12))
+
+envp = dword ptr 10h	(dword declared with offset of 10 hex (16))
+
+push         ebp	(push ebp onto stack and decrement)
+mov          ebp, esp	(Move ebp into ebp register)
+and          esp, 0FFFFFFF0h	(Merges with given hex code, restricting esp to 16 bytes)
+sub          esp, 20h	(esp - 20h (32) = -32)
+call         ___main	(call main function)
+mov          dword ptr [esp+1Ch], 3	(move 3 to ptr at [esp + 1ch])
+mov          dword ptr [esp+18h], 5	(moce 5 to ptr at [esp + 18h])
+mov          dword ptr [esp+14h], 0	(move 0 to ptr at [esp + 14h])
+mov          eax, [esp+1Ch]	(move [esp + 1ch] to eax register (value 3))
+imul         eax, [esp+18h]	(Multiply eax(3) with [esp + 14h](5))
+mov          edx, eax	(move eax to edx with value 15)
+mov          eax, [esp+1Ch]	(move [esp + 1ch] to eax with value 3)
+mov          ecx, eax	(move eax to ecx with value 3)
+shr          ecx, 1Fh	(shift bits in eax by 1Fh (31))
+add          eax, ecx	(add eax register to ecx)
+sar          eax, 1	(shift bits in eax right by 1)
+sub          edx, eax	(subtract eax(1) from edx(15) = 14)
+mov          eax, edx	(move edx to eax with value 14)
+mov          [esp+14h], eax	(move eax to [esp+14h] with value 14)
+mov          eax, [esp+14h]	(move [esp+14h] to eax with value 14)
+mov          [esp+4], eax	(move eax to [esp+4] with value 14)
+mov         dword ptr [esp], offset aD ; "%d"	(print value of ptr[esp])
+call         _printf	(call function printf to print value)
+mov          eax, 0	(move value 0 to eax register)
+leave
+retn
+_main endp
+
+
+C code:
+main (int argc, char argv, char envp){
+	int a = 3;
+	int b = 5;
+	int c = 0;
+	z = ((x * y) - (x + (value of shr ecx, 1Fh)) / 2);
+	printf("%d", z);
+	return;
+}
