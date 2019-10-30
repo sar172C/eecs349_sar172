@@ -1,0 +1,16 @@
+Question 1:
+
+By following the address calls I was led to a JE call on line '00401243', which sets the jump to different
+prompts depending on whether the name and serial number are a match. By changing this to a JNE
+program passes by serial check without need for correct serial number.
+
+
+Question 2:
+In order to generate serial number from given name,
+-add ASCII value of all characters in name
+-xor that value with 0x5678
+-xor resulting value with 0x1234
+
+(meow becomes 17780)
+(Ryan becomes 17782)
+(Moose becomes 17871)
